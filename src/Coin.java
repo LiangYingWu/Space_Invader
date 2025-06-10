@@ -13,7 +13,7 @@ public class Coin {
 
     private int moveTimer = 0;
     
-    Coin(double x, double y, int exp) {
+    public Coin(double x, double y, int exp) {
         this.x = x;
         this.y = y;
         this.exp = exp;
@@ -22,7 +22,7 @@ public class Coin {
         this.moveTimer = 100;
     }
 
-    void move(double playerX, double playerY) {
+    public void move(double playerX, double playerY) {
         x += dx;
         y += dy;
         xPoints[0] = (int) (x - width / 2);
@@ -50,16 +50,16 @@ public class Coin {
         }
     }
 
-    void draw(Graphics g) {
+    public void draw(Graphics g) {
         g.setColor(color);
         g.fillPolygon(xPoints, yPoints, 4);
     }
 
-    int getExp() {
+    public int getExp() {
         return exp;
     }
 
-    Rectangle getBounds() {
+    public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, width, height);
     }
 }

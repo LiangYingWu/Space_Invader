@@ -6,15 +6,15 @@ import java.util.List;
 import javax.swing.*;
 
 public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyListener, MouseListener{
-    Timer timer1, timer2, timer3, timer4;
-    ArrayList<Enemy> enemies = new ArrayList<>();
-    List<Enemy> enemiesToAdd = new ArrayList<>();
-    ArrayList<Bullet> bullets = new ArrayList<>();
-    List<Bullet> bulletsToAdd = new ArrayList<>();
-    ArrayList<Explode> explodes = new ArrayList<>();
-    ArrayList<Coin> coins = new ArrayList<>();
-    Player player;
-    CampFire campFire;
+    public Timer timer1, timer2, timer3, timer4;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private List<Enemy> enemiesToAdd = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private List<Bullet> bulletsToAdd = new ArrayList<>();
+    private ArrayList<Explode> explodes = new ArrayList<>();
+    private ArrayList<Coin> coins = new ArrayList<>();
+    public Player player;
+    private CampFire campFire;
     
     private boolean paused = false;
     private boolean playerInput = false;
@@ -135,7 +135,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         });
     }
 
-    void spawnEnemies() {
+    public void spawnEnemies() {
         // if (enemies.isEmpty()) {
         //     enemies.add(new BigSquare(610, -100, 
         //                                         60, (int) (60 * 1.732 / 2), 
@@ -314,7 +314,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         repaint();
     }
 
-    void checkCollisions() {
+    public void checkCollisions() {
         bonfireCheck();
 
         bulletCollisions();
@@ -326,7 +326,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         coinPlayerCollisions();
     }
 
-    void bonfireCheck() {
+    public void bonfireCheck() {
         if (!inBonfire) {
             double dx = (double) (player.getCenterX() - campFire.getCenterX());
             double dy = (double) (player.getCenterY() - campFire.getCenterY());
@@ -373,7 +373,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void bulletCollisions() {
+    public void bulletCollisions() {
         Iterator<Bullet> bullet = bullets.iterator(); // bullet & enemy
         while (bullet.hasNext()) {
             Bullet b = bullet.next();
@@ -434,7 +434,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void explodeCollisions() {
+    public void explodeCollisions() {
         Iterator<Explode> explode = explodes.iterator(); // explode & enemy
         while (explode.hasNext()) {
             Explode b = explode.next();
@@ -491,7 +491,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void enemyPlayerCollisions() {
+    public void enemyPlayerCollisions() {
         Iterator<Enemy> enemy = enemies.iterator();
         while (enemy.hasNext()) {
             Enemy e = enemy.next();
@@ -515,7 +515,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void coinPlayerCollisions() {
+    public void coinPlayerCollisions() {
         Iterator<Coin> coin = coins.iterator();
         while (coin.hasNext()) {
             Coin c = coin.next();
@@ -529,7 +529,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void drawEnemyIndicator(Graphics g, int playerX, int playerY, int enemyX, int enemyY) {
+    public void drawEnemyIndicator(Graphics g, int playerX, int playerY, int enemyX, int enemyY) {
         if (enemyX < 0 || enemyX > Constants.FRAMEWIDTH || enemyY < 0 || enemyY > Constants.FRAMEHEIGHT) {
             double angle = Math.atan2(enemyY - playerY, enemyX - playerX);
 
@@ -566,7 +566,7 @@ public class SpaceInvaderPanel extends JPanel implements ActionListener, KeyList
         }
     }
 
-    void deleteOutOfScreenBullets() {
+    public void deleteOutOfScreenBullets() {
         Iterator<Bullet> bullet = bullets.iterator();
         while (bullet.hasNext()) {
             Bullet b = bullet.next();

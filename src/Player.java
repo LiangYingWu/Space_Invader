@@ -22,16 +22,16 @@ public class Player{
     private boolean dodging = false;
     private int dodgeTimer = 0;
     private int dodgeCoolDown = 0;
-    public double dodgedx = 0;
-    public double dodgedy = 0;
-    public double dodgeSpeed = 0;
+    private double dodgedx = 0;
+    private double dodgedy = 0;
+    private double dodgeSpeed = 0;
     
     private boolean knockBacking = false;
-    public double knockBackdx = 0;
-    public double knockBackdy = 0;
-    public int knockBackSpeed = 0;
-    public int knockBackTimer = 0;
-    public int knockBackCoolDown = 0;
+    private double knockBackdx = 0;
+    private double knockBackdy = 0;
+    private int knockBackSpeed = 0;
+    private int knockBackTimer = 0;
+    private int knockBackCoolDown = 0;
 
     Player(int x, int y, int w, int h, Color c, int health, int energy) {
         this.x = x;
@@ -45,7 +45,7 @@ public class Player{
         this.estus = Constants.PLAYERESTUSNUM;
     }
 
-    void move(boolean wPressed, boolean aPressed, boolean sPressed, boolean dPressed) {
+    public void move(boolean wPressed, boolean aPressed, boolean sPressed, boolean dPressed) {
         if (!knockBacking) {
             if (!dodging && !attacking && !healing) {
                 double dx = 0;
@@ -130,7 +130,7 @@ public class Player{
         }
     }
 
-    void dodge(boolean wPressed, boolean aPressed, boolean sPressed, boolean dPressed) {
+    public void dodge(boolean wPressed, boolean aPressed, boolean sPressed, boolean dPressed) {
         if (!attacking && !dodging && !knockBacking && !healing && currentEnergy > 0){
             dodging = true;
             dodgeTimer = 10;
@@ -168,7 +168,7 @@ public class Player{
         knockBacking = true;
     }
 
-    void attack() {
+    public void attack() {
         if (!attacking && !dodging && !knockBacking && !healing && currentEnergy > 0) {
             attacking = true;
             attackCoolDown = 30;
@@ -176,33 +176,33 @@ public class Player{
         }
     }
 
-    void getHurt(int damage) {
+    public void getHurt(int damage) {
         if (!invincible) {
             currentHealth -= damage;
         }
     }
 
-    boolean isAttacking() {
+    public boolean isAttacking() {
         return attacking;
     }
 
-    boolean isKnockBacking() {
+    public boolean isKnockBacking() {
         return knockBacking;
     }
 
-    boolean isDodging() {
+    public boolean isDodging() {
         return dodging;
     }
 
-    boolean isHealing() {
+    public boolean isHealing() {
         return healing;
     }
 
-    boolean isInvincible() {
+    public boolean isInvincible() {
         return invincible;
     }
 
-    void draw(Graphics g) {
+    public void draw(Graphics g) {
         g.setColor(color);
         double centerX = getCenterX();
         double centerY = getCenterY();
@@ -226,11 +226,11 @@ public class Player{
         g.fillOval((int) (centerX - w / 2), (int) (centerY - h / 2), (int) w, (int) h);
     }
 
-    int getHealth() {
+    public int getHealth() {
         return currentHealth;
     }
 
-    void increaseHealth() {
+    public void increaseHealth() {
         if (estus > 0) {
             if (!attacking && !dodging && !knockBacking && !healing) {
                 estus -= 1;
@@ -241,59 +241,59 @@ public class Player{
         }
     }
 
-    void restoreHealth() {
+    public void restoreHealth() {
         currentHealth = (int) Constants.playerActualHP;
     }
 
-    void restoreEnergy() {
+    public void restoreEnergy() {
         currentEnergy = (int) Constants.playerActualEnergy;
     }
 
-    int getEstus() {
+    public int getEstus() {
         return estus;
     }
 
-    void restoreEstus() {
+    public void restoreEstus() {
         estus = Constants.PLAYERESTUSNUM;
     }
 
-    void increaseExp(int exp) {
+    public void increaseExp(int exp) {
         this.exp += exp;
     }
 
-    void decreaseExp(int exp) {
+    public void decreaseExp(int exp) {
         this.exp -= exp;
     }
 
-    int getExp() {
+    public int getExp() {
         return exp;
     }
 
-    int getEnergy() {
+    public int getEnergy() {
         return (int) currentEnergy;
     }
 
-    double getX() {
+    public double getX() {
         return x;
     }
 
-    double getY() {
+    public double getY() {
         return y;
     }
     
-    double getCenterX() {
+    public double getCenterX() {
         return (int) (x + (double) width / 2);
     }
 
-    double getCenterY() {
+    public double getCenterY() {
         return y + (double) height / 2;
     }
 
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    Rectangle getBounds() {
+    public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, width, height);
     }
 }
